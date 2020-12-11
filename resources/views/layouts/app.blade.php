@@ -34,13 +34,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link " href="####">tasks</a>
+                            <a class="nav-link " href="####">{{__('layouts.tasks')}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="###">taskStatuses</a>
+                            <a class="nav-link " href="{{ route('task_statuses.index')}}">{{__('layouts.task_statuses')}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="###">labels</a>
+                            <a class="nav-link " href="###">{{__('layouts.labels')}}</a>
                         </li>
                     </ul>
 
@@ -82,10 +82,12 @@
                 </div>
             </div>
         </nav>
-        <main>
+        <main class='container py-4'>
             @include('flash::message')
             @yield('content')
         </main>
     </div>
 </body>
 </html>
+
+
