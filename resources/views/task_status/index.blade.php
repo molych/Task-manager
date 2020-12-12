@@ -32,10 +32,10 @@
                         rel="nofollow"
                         data-confirm="{{__('task_status.delete_confirm')}}" 
                     >
-                        Remove                        
+                    {{__('task_status.remove')}}                     
                     </a>
                     <a href="{{route('task_statuses.edit', $taskStatus)}}">
-                        Edit                        
+                    {{__('task_status.edit')}}                       
                     </a>
                 </td>
             @endauth

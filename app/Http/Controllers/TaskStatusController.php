@@ -9,7 +9,8 @@ class TaskStatusController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('index');
+        
     }
     /**
      * Display a listing of the resource.
@@ -63,11 +64,11 @@ class TaskStatusController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\TaskStatus  $taskStatus
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(TaskStatus $taskStatus)
     {
-        //
+        return view('task_status.edit', compact('taskStatus'));
     }
 
     /**
@@ -75,25 +76,26 @@ class TaskStatusController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\TaskStatus  $taskStatus
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function update(Request $request, TaskStatus $taskStatus)
     {
-        //
+       
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\TaskStatus  $taskStatus
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function destroy($id)
     {
-        $TaskStatus = TaskStatus::find($id);
-        if ($TaskStatus ) {
-            $TaskStatus ->delete();
+        $taskStatus = TaskStatus::find($id);
+            if ($taskStatus) {
+            $taskStatus->delete();
         }
+        flash(__('task_status.delete'))->success();
         return redirect()->route('task_statuses.index');
     }
 }

@@ -11,5 +11,9 @@ return [
     'delete_confirm' => "Do you really want to delete this task status?",
     'create' => 'Create',
     'status_name' => 'Name',
-    'add_new_status_task' => 'Add new status task'
+    'add_new_status_task' => 'Add new status task',
+    'remove' => 'remove',
+    'edit' => 'edit',
+    'delete' => 'delete',
+    'update' => 'Update'
 ];

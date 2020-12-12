@@ -51,3 +51,9 @@ watch:
 
 push:
 	git push origin main
+
+seed:
+	php artisan db:seed
+
+seed-fresh:
+	php artisan migrate:fresh --seed
