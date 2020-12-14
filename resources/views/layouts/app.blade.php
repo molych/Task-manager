@@ -35,13 +35,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link " href="####">{{__('layouts.tasks')}}</a>
+                            <a class="nav-link " href="{{route('tasks.index')}}">{{__('layouts.tasks')}}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " href="{{ route('task_statuses.index')}}">{{__('layouts.task_statuses')}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="###">{{__('layouts.labels')}}</a>
+                            <a class="nav-link " href="{{ route('labels.index') }}">{{__('layouts.labels')}}</a>
                         </li>
                     </ul>
 

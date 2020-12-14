@@ -15,5 +15,7 @@ return [
     'remove' => 'remove',
     'edit' => 'edit',
     'delete' => 'delete',
-    'update' => 'Update'
+    'update' => 'Update',
+    'updated' => 'Status has updated',
+    'added' => 'Status has added'
 ];

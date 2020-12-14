@@ -10,7 +10,6 @@ class TaskStatusController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('index');
-        
     }
     /**
      * Display a listing of the resource.
@@ -42,22 +41,11 @@ class TaskStatusController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $this->validate($request,['name' => 'required|unique:task_statuses']);
+        $data = $this->validate($request, ['name' => 'required|unique:task_statuses']);
         $taskStatus = new TaskStatus();
         $taskStatus->fill($data)->save();
         flash(__('task_status.added'))->success();
         return redirect()->route('task_statuses.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\TaskStatus  $taskStatus
-     * @return \Illuminate\Http\Response
-     */
-    public function show(TaskStatus $taskStatus)
-    {
-        //
     }
 
     /**
@@ -80,7 +68,13 @@ class TaskStatusController extends Controller
      */
     public function update(Request $request, TaskStatus $taskStatus)
     {
-       
+
+        $data = $this->validate($request, [
+            'name' => 'required|unique:task_statuses,name,' . $taskStatus->id
+        ]);
+        $taskStatus->fill($data)->save();
+        flash(__('task_status.updated'))->success();
+        return redirect()->route('task_statuses.index');
     }
 
     /**
@@ -92,7 +86,7 @@ class TaskStatusController extends Controller
     public function destroy($id)
     {
         $taskStatus = TaskStatus::find($id);
-            if ($taskStatus) {
+        if ($taskStatus) {
             $taskStatus->delete();
         }
         flash(__('task_status.delete'))->success();

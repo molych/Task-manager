@@ -2,7 +2,7 @@
 
 return [
     //app
-    'task_statuses' => 'Task statuses',
+    'task_statuses' => 'TaskStatuses',
     'tasks' => 'Tasks',
-    'labels' => 'labels',
+    'labels' => 'Labels',
 ];

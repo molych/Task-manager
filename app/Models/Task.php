@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TaskStatus extends Model
+class Task extends Model
 {
     use HasFactory;
 
@@ -15,5 +15,5 @@ class TaskStatus extends Model
      * @var array
      */
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'description', 'status_id', 'assigned_to_id'];
 }

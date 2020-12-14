@@ -20,11 +20,10 @@ class TaskStatusSeeder extends Seeder
             "In testing",
             "Complited"
         ];
-        foreach($taskStatuses as $status) {
+        foreach ($taskStatuses as $status) {
             $taskStatus = new TaskStatus();
             $taskStatus->name = $status;
-            $taskStatus->save(); 
+            $taskStatus->save();
         }
-       
     }
 }
