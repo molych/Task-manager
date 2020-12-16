@@ -44,6 +44,7 @@ class TaskStatusController extends Controller
         $data = $this->validate($request, ['name' => 'required|unique:task_statuses']);
         $taskStatus = new TaskStatus();
         $taskStatus->fill($data)->save();
+
         flash(__('task_status.added'))->success();
         return redirect()->route('task_statuses.index');
     }

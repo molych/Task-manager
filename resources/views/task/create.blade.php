@@ -18,7 +18,7 @@
     {{ Form::select('status_id', $statuses, $task->status_id ?? null, ['class' => 'form-control' . ($errors->has('status_id') ? ' is-invalid' : ''), 'placeholder' => __('task.status')]) }}
 
     {{ Form::label('label_id', __('task.label')) }}
-    {{ Form::select('label_id[]', $labels, $task->labels, ['class' => 'form-control', 'multiple' => true, 'size' => '2']) }}
+    {{ Form::select('label_id[]', $labels, $task->labels, ['class' => 'form-control', 'multiple' => true, 'size' => '5']) }}
     </div>
 
     {{Form::submit(__('task.create'), ['class' => 'btn btn-primary'])}}

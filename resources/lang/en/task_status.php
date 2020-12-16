@@ -14,8 +14,8 @@ return [
     'add_new_status_task' => 'Add new status task',
     'remove' => 'remove',
     'edit' => 'edit',
-    'delete' => 'delete',
+    'delete' => 'Status has been removed',
     'update' => 'Update',
-    'updated' => 'Status has updated',
+    'updated' => 'Status has been updated',
     'added' => 'Status has added'
 ];

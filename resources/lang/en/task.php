@@ -20,8 +20,12 @@
         "create" => "create",
         'label' => 'label',
         'added' => 'Task has been added',
-        'udated' => 'Task has benn updated',
-        'delete' => 'Task has been removed'
+        'udated' => 'Task has been updated',
+        'remove' => 'Task has been removed',
+        'delete' => 'Remove',
+        //show
+        'task' => 'Task',
+        'labels' => 'labels'
 
 
     ];

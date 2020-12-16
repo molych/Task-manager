@@ -48,7 +48,7 @@ class TaskStatusTest extends TestCase
     public function testEdit()
     {
         $this->actingAs($this->user)
-            ->get(route('task_statuses.edit', $this->taskStatus))
+            ->get(route('task_statuses.edit ', $this->taskStatus))
             ->assertOk();
     }
 

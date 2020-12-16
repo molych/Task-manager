@@ -26,27 +26,31 @@
             </tr>
         </thead>
         <tbody>
+        @foreach($tasks as $task)
             <tr>
-            @foreach($tasks as $task)
+         
                 <td>{{$task->id}}</td>
-                <td>{{$task->status}}</td>
+                <td>{{$task->status->name}}</td>
                 <td>
                     <a href="{{route('tasks.show', $task->id)}}">
                         {{{$task->name}}}
                     </a>
                 </td>
-                <td>{{$task->creator}}</td>
-                <td>{{$task->assigner}}</td>
+                <td>{{$task->createBy->name}}</td>
+                <td>{{optional($task->assignee)->name}}</td>
                 <td>{{$task->created_at}}</td>
                 @auth
                 <td>
+                    @can('delete', $task)
+                    <a href="{{ route('tasks.destroy', $task) }}" data-confirm="{{__('task.delete_confirm')}}" data-method="delete" rel="nofollow">{{__('task.delete')}}</a>
+                    @endcan
                     <a href="{{route('tasks.edit', $task->id)}}">
                         {{__('task.edit')}}
                     </a>
                 </td>
                 @endauth
-            @endforeach
             </tr>
+            @endforeach
         </tbody>
     </table>
 @endsection
