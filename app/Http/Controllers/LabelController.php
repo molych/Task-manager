@@ -37,7 +37,10 @@ class LabelController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $this->validate($request, ['name' => 'required|unique:labels']);
+        $data = $this->validate($request, [
+            'name' => 'required|unique:labels',
+            'description' => 'nullable'
+            ]);
         $label = new Label();
         $label->fill($data)->save();
         flash(__('label.added'))->success();

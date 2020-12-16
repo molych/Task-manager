@@ -9,22 +9,42 @@ use App\Models\TaskStatus;
 use App\Models\Label;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class TaskController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except('index', 'show');
     }
     /**
      * Display a listing of the resource.
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::all();
-        return view("task.index", compact('tasks'));
+        $tasks = QueryBuilder::for(Task::class)
+        ->allowedFilters([
+            AllowedFilter::exact('status_id'),
+            AllowedFilter::exact('created_by_id'),
+            AllowedFilter::exact('assigned_to_id'),
+        ])
+        ->get();
+
+        $assigners = User::pluck('name', 'id');
+        $creators = User::pluck('name', 'id');
+        $statuses = TaskStatus::pluck('name', 'id');
+        return view("task.index", [
+            'tasks' => $tasks,
+            'creators' => $creators,
+            'statuses' => $statuses,
+            'assigners' => $assigners,
+            'filteredStatus' => $request->input('filter.status_id'),
+            'filteredCreator' => $request->input('filter.created_by_id'),
+            'filteredAssigner' => $request->input('filter.assigned_to_id'),
+        ]);
     }
 
     /**
@@ -56,7 +76,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-  
+
         $data = $this->validate($request, [
             'name' => 'required|unique:tasks',
             'description' => 'nullable',
@@ -79,7 +99,7 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\View\View
      */
-    public function show(Task  $task)
+    public function show(Task $task)
     {
         return view('task.show', compact('task'));
     }
@@ -90,7 +110,7 @@ class TaskController extends Controller
      *  @param  \App\Models\Task  $task
      * @return \Illuminate\View\View
      */
-    public function edit(Task  $task)
+    public function edit(Task $task)
     {
         $assigners = User::pluck('name', 'id');
         $labels = Label::pluck('name', 'id');
@@ -111,7 +131,7 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\View\View
      */
-    public function update(Request $request, Task  $task)
+    public function update(Request $request, Task $task)
     {
         $data = $request->validate([
             'name' => 'required',

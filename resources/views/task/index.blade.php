@@ -1,16 +1,41 @@
 @extends('layouts.app')
 @section('content')
 <h1 class="mb-5">{{__('task.task')}}</h1>
+
+<div class="d-flex">
+
+{{ Form::open(['url' => route('tasks.index'), 'method' => 'GET', 'class' => 'form-row']) }}
+
+<div class="form-group mr-2">
+    {{ Form::select('filter[status_id]', $statuses, $filteredStatus, 
+        ['class' => 'form-control', 'placeholder' => __('task.statuses')])  }}
+        </div>
+
+<div class="form-group mr-2">
+    {{ Form::select('filter[created_by_id]', $creators, $filteredCreator, 
+        ['class' => 'form-control', 'placeholder' => __('task.creators')])  }}
+</div>
+        <div class="form-group mr-2">
+    {{ Form::select('filter[assigned_to_id]', $assigners, $filteredAssigner, 
+    ['class' => 'form-control', 'placeholder' => __('task.assigners')])  }}
+</div>
+
+<div class="form-group mr-2">
+    {{ Form::submit(__('task.apply'), ['class' => 'btn btn-primary']) }}
+</div>
+
+{{ Form::close() }}
+ 
 @auth
-<div>
+<div class='ml-auto'>
     <a href="{{route('tasks.create')}}" class="btn btn-primary ml-auto">
     {{__('task.add_new')}}
     </a>
-</div>
+    </div>
 @endauth
-<div class="d-flex">
- 
-    
+
+
+</div>
     <table class="table mt-2">
         <thead>
             <tr>

@@ -14,6 +14,10 @@
         'add_new' => 'Add new',
         'task' => 'Task',
         'edit' => 'Edit',
+        'statuses' => 'Statuses',
+        'creators' => 'Creators',
+        'assigners' => 'Assigners',
+        'apply' => 'Apply',
         //create
         'add_new_task' => "Add new task",
         "label_task_name" => 'name',
