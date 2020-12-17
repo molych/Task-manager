@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<h1 class="mb-5">{{__('task.task')}}</h1>
+<h1 class="mb-5">{{__('task.tasks')}}</h1>
 
 <div class="d-flex">
 

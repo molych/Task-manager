@@ -12,7 +12,7 @@
         'actions' => 'Actions',
         'creator' => 'Creator',
         'add_new' => 'Add new',
-        'task' => 'Task',
+        'tasks' => 'Tasks',
         'edit' => 'Edit',
         'statuses' => 'Statuses',
         'creators' => 'Creators',

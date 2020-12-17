@@ -16,7 +16,7 @@ class TaskPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(?User $user)
     {
         return true;
     }
@@ -28,7 +28,7 @@ class TaskPolicy
      * @param  \App\Models\Task  $task
      * @return mixed
      */
-    public function view(User $user, Task $task)
+    public function view(?User $user, Task $task)
     {
         return true;
     }
@@ -39,7 +39,7 @@ class TaskPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(?User $user)
     {
         return true;
     }
