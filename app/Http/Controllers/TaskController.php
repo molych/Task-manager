@@ -55,7 +55,6 @@ class TaskController extends Controller
     public function create()
     {
         $task = new Task();
-
         $assigners = User::pluck('name', 'id');
         $labels = Label::pluck('name', 'id');
         $statuses = TaskStatus::pluck('name', 'id');
@@ -82,12 +81,17 @@ class TaskController extends Controller
             'description' => 'nullable',
             'status_id' => 'required',
             'assigned_to_id' => 'nullable',
+            'label_id' => 'array',
+            'label_id.*' => 'exists:labels,id',
             ]);
         $task = new Task();
         $task->fill($data);
         $user = Auth::user();
         $task->createBy()->associate($user);
         $task->save();
+        $labelId = Arr::get($data, 'label_id', []);
+
+        $task->labels()->sync($labelId);
 
         flash(__('task.added'))->success();
         return redirect()->route('tasks.index');
