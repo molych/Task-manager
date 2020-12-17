@@ -24,6 +24,6 @@ class HomeController extends Controller
     public function index()
     {
         flash('You are logged in!')->success();
-        return view('home');
+        return view('welcome');
     }
 }
