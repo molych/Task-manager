@@ -29,7 +29,8 @@
         'delete' => 'Remove',
         //show
         'task' => 'Task',
-        'labels' => 'labels'
-
+        'labels' => 'labels',
+        'delete_confirm' => 'Do you really want to delete this task ?',
+        'removed' => 'Task has been removed'
 
     ];

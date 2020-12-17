@@ -91,7 +91,6 @@ class TaskController extends Controller
         $task->createBy()->associate($user);
         $task->save();
         $labelId = Arr::get($data, 'label_id', []);
-        dd($labelId);
         $task->labels()->sync($labelId);
 
         flash(__('task.added'))->success();
@@ -159,12 +158,10 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\View\View
      */
-    public function destroy($task)
+    public function destroy(Task  $task)
     {
         $task->delete();
-
         flash(__('task.removed'))->success();
-
         return redirect()->route('tasks.index');
     }
 }
