@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class WelcomeTest extends TestCase
+class HomeTest extends TestCase
 {
     /**
      * A basic test example.
@@ -14,7 +14,7 @@ class WelcomeTest extends TestCase
      */
     public function testBasicTest()
     {
-        $response = $this->get(route('welcome'));
+        $response = $this->get(route('home'));
 
         $response->assertStatus(200);
     }

@@ -9,8 +9,8 @@ return [
     'description' => 'Description',
     'created_at' => 'Created at',
     'actions' => 'Actions',
-    'remove' => 'remove',
-    'edit' => 'edit',
+    'remove' => 'Remove',
+    'edit' => 'Edit',
 
     //create
     'create_new_label' => 'Create new label',
