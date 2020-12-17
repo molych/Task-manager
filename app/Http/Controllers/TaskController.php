@@ -17,6 +17,7 @@ class TaskController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('index', 'show');
+        $this->authorizeResource(Task::class);
     }
     /**
      * Display a listing of the resource.
@@ -90,7 +91,7 @@ class TaskController extends Controller
         $task->createBy()->associate($user);
         $task->save();
         $labelId = Arr::get($data, 'label_id', []);
-
+        dd($labelId);
         $task->labels()->sync($labelId);
 
         flash(__('task.added'))->success();
