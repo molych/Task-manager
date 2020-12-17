@@ -17,7 +17,7 @@ class TaskController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except('index', 'show');
-        $this->authorizeResource(Task::class);
+        $this->authorizeResource(Task::class, 'task');
     }
     /**
      * Display a listing of the resource.
