@@ -38,7 +38,7 @@ class TaskTest extends TestCase
     public function testCreate()
     {
         $this->actingAs($this->user)
-        ->get(route('tasks.create'))
-        ->assertOk();
+            ->get(route('tasks.create'))
+            ->assertOk();
     }
 }
