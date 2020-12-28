@@ -40,8 +40,6 @@ lint-fix:
 install:
 	composer install
 
-restart:
-	heroku restart -a webpage-analyzer
 
 test-coverage:
 	composer phpunit tests -- --coverage-clover build/logs/clover.xml
