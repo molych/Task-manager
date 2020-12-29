@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Models\TaskStatus;
 use App\Models\User;
 use App\Models\Task;
+use Faker\Factory;
 
 class TaskTest extends TestCase
 {
@@ -40,5 +41,63 @@ class TaskTest extends TestCase
         $this->actingAs($this->user)
             ->get(route('tasks.create'))
             ->assertOk();
+    }
+
+    /** @return void */
+    public function testStore()
+    {
+        $data = [
+            'name' => Factory::create()->text(30),
+            'description' => Factory::create()->text(100),
+            'status_id' => $this->taskStatus->id,
+            'created_by_id' => $this->user->id,
+            'assigned_to_id' => $this->user->id
+        ];
+        $this->actingAs($this->user)
+            ->post(route('tasks.store', $data))
+            ->assertSessionHasNoErrors();
+        $this->assertDatabaseHas('tasks', $data);
+    }
+
+    /** @return void */
+    public function testShow()
+    {
+        $this->get(route('tasks.show', $this->task))
+        ->assertOk();
+    }
+
+    /** @return void */
+    public function testEdit()
+    {
+        $this
+            ->actingAs($this->user)
+            ->get(route('tasks.edit', $this->task))
+            ->assertOk();
+    }
+
+    /** @return void */
+    public function testUpdate()
+    {
+        $data = [
+            'name' => Factory::create()->text(30),
+            'description' => Factory::create()->text(100),
+            'status_id' => TaskStatus::factory()->create()->id,
+            'assigned_to_id' => User::factory()->create()->id
+        ];
+        $this
+            ->actingAs($this->user)
+            ->patch(route('tasks.update', $this->task), $data)
+            ->assertSessionHasNoErrors();
+        $this->assertDatabaseHas('tasks', $data);
+    }
+
+    /** @return void */
+    public function testDelete()
+    {
+        $this
+            ->actingAs($this->task->creator)
+            ->delete(route('tasks.destroy', $this->task))
+            ->assertSessionHasNoErrors();
+        $this->assertDeleted('tasks', [$this->task]);
     }
 }
