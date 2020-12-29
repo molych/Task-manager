@@ -19,6 +19,6 @@ class Label extends Model
 
     public function tasks()
     {
-        return $this->belongsToMany('App\Models\Task');
+        return $this->belongsToMany('App\Models\Task')->withTimestamps();;
     }
 }

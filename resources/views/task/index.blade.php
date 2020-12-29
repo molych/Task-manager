@@ -4,27 +4,31 @@
 
 <div class="d-flex">
 
-{{ Form::open(['url' => route('tasks.index'), 'method' => 'GET', 'class' => 'form-row']) }}
+<div>    
+    {{ Form::open(['url' => route('tasks.index'), 'method' => 'GET', 'class' => 'form-row']) }}
 
-<div class="form-group mr-2">
-    {{ Form::select('filter[status_id]', $statuses, $filteredStatus, 
+        <div class="form-group mr-2">
+        {{ Form::select('filter[status_id]', $statuses, $filteredStatus, 
         ['class' => 'form-control', 'placeholder' => __('task.statuses')])  }}
         </div>
 
-<div class="form-group mr-2">
-    {{ Form::select('filter[created_by_id]', $creators, $filteredCreator, 
-        ['class' => 'form-control', 'placeholder' => __('task.creators')])  }}
-</div>
         <div class="form-group mr-2">
-    {{ Form::select('filter[assigned_to_id]', $assigners, $filteredAssigner, 
-    ['class' => 'form-control', 'placeholder' => __('task.assigners')])  }}
+        {{ Form::select('filter[created_by_id]', $creators, $filteredCreator, 
+        ['class' => 'form-control', 'placeholder' => __('task.creators')])  }}
+        </div>
+        
+        <div class="form-group mr-2">
+        {{ Form::select('filter[assigned_to_id]', $assigners, $filteredAssigner, 
+        ['class' => 'form-control', 'placeholder' => __('task.assigners')])  }}
+        </div>
+
+        <div class="form-group mr-2">
+        {{ Form::submit(__('task.apply'), ['class' => 'btn btn-primary']) }}
+        </div>
+
+    {{ Form::close() }}
 </div>
 
-<div class="form-group mr-2">
-    {{ Form::submit(__('task.apply'), ['class' => 'btn btn-primary']) }}
-</div>
-
-{{ Form::close() }}
  
 @auth
 <div class='ml-auto'>

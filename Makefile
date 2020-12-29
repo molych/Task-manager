@@ -42,7 +42,7 @@ install:
 
 
 test-coverage:
-	composer phpunit tests -- --coverage-clover build/logs/clover.xml
+	composer phpunit -- --coverage-clover build/logs/clover.xml
 
 watch:
 	npm run watch
