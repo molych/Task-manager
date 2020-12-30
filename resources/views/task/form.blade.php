@@ -1,3 +1,5 @@
+
+
 {{Form::label('description', __('task.description'))}}
 {{Form::textarea('description', $task->description, ['class' => 'form-control', 'cols' => '50', 'rows' => '10'])}}
 
@@ -9,3 +11,4 @@
 
 {{ Form::label('label_id', __('task.label')) }}
 {{ Form::select('label_id[]', $labels, $task->labels, ['class' => 'form-control', 'multiple' => true, 'size' => '5']) }}
+

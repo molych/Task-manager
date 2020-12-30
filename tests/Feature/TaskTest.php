@@ -70,7 +70,7 @@ class TaskTest extends TestCase
     public function testEdit()
     {
         $this
-            ->actingAs($this->user)
+            ->actingAs($this->task->createdBy)
             ->get(route('tasks.edit', $this->task))
             ->assertOk();
     }
@@ -84,10 +84,10 @@ class TaskTest extends TestCase
             'status_id' => TaskStatus::factory()->create()->id,
             'assigned_to_id' => User::factory()->create()->id
         ];
-        $this
-            ->actingAs($this->user)
-            ->patch(route('tasks.update', $this->task), $data)
-            ->assertSessionHasNoErrors();
+        $response = $this
+            ->actingAs($this->task->createdBy)
+            ->patch(route('tasks.update', $this->task), $data);
+        $response->assertSessionHasNoErrors();
         $this->assertDatabaseHas('tasks', $data);
     }
 
@@ -95,9 +95,11 @@ class TaskTest extends TestCase
     public function testDelete()
     {
         $this
-            ->actingAs($this->task->creator)
+            ->actingAs($this->task->createdBy)
             ->delete(route('tasks.destroy', $this->task))
             ->assertSessionHasNoErrors();
         $this->assertDeleted('tasks', [$this->task]);
     }
 }
+
+

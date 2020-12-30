@@ -77,3 +77,5 @@ class LabelTest extends TestCase
             ->assertRedirect();
     }
 }
+
+
