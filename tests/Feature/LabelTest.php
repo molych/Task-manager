@@ -50,7 +50,7 @@ class LabelTest extends TestCase
     public function testEdit()
     {
         $this->actingAs($this->user)
-            ->get(route('labels.edit ', $this->label))
+            ->get(route('labels.edit', $this->label))
             ->assertOk();
     }
 

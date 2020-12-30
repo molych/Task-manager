@@ -65,7 +65,7 @@
                         {{{$task->name}}}
                     </a>
                 </td>
-                <td>{{$task->createBy->name}}</td>
+                <td>{{$task->createdBy->name}}</td>
                 <td>{{optional($task->assignee)->name}}</td>
                 <td>{{$task->created_at}}</td>
                 @auth

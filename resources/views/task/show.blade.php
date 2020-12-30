@@ -9,9 +9,10 @@
 <p>{{__('task.status')}}: {{$task->status->name}}</p>
 <p>{{__('task.description')}}: {{$task->description ?? ''}}</p>
 <p>{{__('task.assignee')}}: {{optional($task->assignee)->name  ?? ''}}</p>
+<p>Lables</p>
 <ul>
     @foreach($task->labels as $label)
-        <li>{{$label}}</li>
+        <li>{{$label->name}}</li>
     @endforeach    
 </div>
 @endsection

@@ -10,6 +10,7 @@ use App\Models\Label;
 use Illuminate\Support\Facades\Auth;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+use Illuminate\Support\Arr;
 
 class TaskController extends Controller
 {
@@ -85,16 +86,18 @@ class TaskController extends Controller
             ]);
         $task = new Task();
         $task->fill($data);
-  
+
         $user = Auth::user();
 
         if (!isset($user)) {
-            throw new \Exception('User is not authenticated'); 
+            throw new \Exception('User is not authenticated');
         }
 
-        $task = $user->tasksCreated()->make($data);
+        $task->fill($data);
+        $task->createdBy()->associate($user);
         $task->save();
-        $task->labels()->attach($request->input('labels'));
+        $labelId = Arr::get($data, 'label_id', []);
+        $task->labels()->attach($labelId);
 
         flash(__('task.added'))->success();
         return redirect()->route('tasks.index');
@@ -145,12 +148,16 @@ class TaskController extends Controller
             'description' => 'required',
             'status_id' => 'nullable',
             'assigned_to_id' => 'nullable',
+            'label_id' => 'array',
+            'label_id' => 'exists:labels,id'
         ]);
 
         $task->fill($data);
         $task->save();
 
         flash(__('task.updated'))->success();
+        $labelId = Arr::get($data, 'label_id', []);
+        $task->labels()->attach($labelId);
 
         return redirect()->route('tasks.index');
     }
@@ -163,10 +170,9 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
+        $task->labels()->detach();
         $task->delete();
         flash(__('task.removed'))->success();
         return redirect()->route('tasks.index');
     }
-
-    
 }
