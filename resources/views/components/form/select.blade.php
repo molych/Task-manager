@@ -1,9 +1,7 @@
-{{ Form::bsSelect('status_id', $statuses, $task->status_id ?? null, 
-    [ class' => 'form-control' . ($errors->has('status_id') ? ' is-invalid' : ''), 
-    'placeholder' => __('task.status')]) }}
+<div class="form-group">
+    {{ Form::label($name, null, ['class' => 'control-label']) }}
+    {{ Form::select($name, $values , $value ,array_merge(['class' => 'form-control'], $attributes)) }}
+</div>
 
-{{ Form::bsSelect('label_id[]', $labels, $task->labels, 
-    ['class' => 'form-control', 'multiple' => true, 'size' => '5']) }}
 
-{{ Form::bsSelect('assigned_to_id', $assigners, $task->assigned_to_id ?? null, 
-    ['class' => 'form-control', 'placeholder' => __('task.assignee')]) }}
+

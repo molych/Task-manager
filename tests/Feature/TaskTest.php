@@ -101,5 +101,3 @@ class TaskTest extends TestCase
         $this->assertDeleted('tasks', [$this->task]);
     }
 }
-
-

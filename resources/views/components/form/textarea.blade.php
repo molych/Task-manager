@@ -1,1 +1,4 @@
-{{ Form::bsTextArea('description', $task->description, ['class' => 'form-control', 'cols' => '50', 'rows' => '10']) }}
+<div class="form-group">
+    {{ Form::label($name, null, ['class' => 'control-label']) }}
+    {{ Form::textarea($name, $value, array_merge(['class' => 'form-control'], $attributes)) }}
+</div>
