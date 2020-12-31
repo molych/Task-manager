@@ -23,6 +23,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Form::component('bsText', 'components.form.text', [
+            'name', 'value' => null, 'attributes' => []
+        ]);
+        \Form::component('bsTextArea', 'components.form.textarea', [
+            'name', 'value' => null, 'attributes' => []
+        ]);
+
+        \Form::component('bsSelect', 'components.form.select', [
+            'name', 'values', 'value' => null, 'attributes' => []
+        ]);
     }
 }

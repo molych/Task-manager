@@ -1,0 +1,1 @@
+{{ Form::bsTextArea('description', $task->description, ['class' => 'form-control', 'cols' => '50', 'rows' => '10']) }}
